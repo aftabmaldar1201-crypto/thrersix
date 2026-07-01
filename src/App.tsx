@@ -1,28 +1,26 @@
 import React from "react";
 import {
-  ArrowRight,
+  
   Building2,
   Calendar,
   Camera,
-  ChevronLeft,
-  ChevronRight,
+  
   CheckCircle2,
   Cloud,
   LineChart,
-  Mail,
+ 
   MapPin,
-  Maximize2,
+  
   Monitor,
-  Phone,
+ 
   Play,
-  Plus,
-  Minus,
+  
   Share2,
   TrendingUp,
 } from "lucide-react";
 
 const BLUE = "#1A73E8";
-const BLUE_DARK = "#1557B0";
+
 
 const HERO_IMG = "https://images.unsplash.com/photo-1559329007-40df8a9345d8?auto=format&fit=crop&w=2000&q=80";
 const TOUR_PREVIEW_IMG = "https://images.unsplash.com/photo-1559329007-40df8a9345d8?auto=format&fit=crop&w=1200&q=80";
@@ -59,99 +57,104 @@ const PROCESS = [
 
 export default function App() {
   return (
-    <main className="min-h-screen bg-white text-slate-900" style={{ fontFamily: "sans-serif", margin: 0, padding: 0, boxSizing: 'border-box' }}>
+    <main style={{ fontFamily: "sans-serif", margin: 0, padding: 0, boxSizing: "border-box", width: "100%", minHeight: "100vh", overflowX: "hidden", background: "#ffffff" }}>
+      
       {/* NAV */}
-      <header className="absolute left-0 right-0 top-0 z-40" style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 40 }}>
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10" style={{ display: 'flex', justifyContent: 'between', alignItems: 'center', maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
-          <a href="#home" className="flex items-center gap-3" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span className="grid h-11 w-11 place-items-center rounded-full border-2 text-sm font-bold" style={{ borderColor: BLUE, color: "white", display: 'grid', placeItems: 'center', width: '44px', height: '44px', borderRadius: '50%', border: `2px solid ${BLUE}` }}>
+      <header style={{ position: "absolute", top: 0, left: 0, width: "100%", zIndex: 40, boxSizing: "border-box" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0px 0px", width: "100%", boxSizing: "border-box" }}>
+          <a href="#home" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px" }}>
+            <span style={{ borderColor: BLUE, color: "white", display: "grid", placeItems: "center", width: "44px", height: "44px", borderRadius: "50%", border: `2px solid ${BLUE}`, fontWeight: "bold", fontSize: "14px" }}>
               360
             </span>
-            <div className="leading-tight">
-              <div className="text-base font-semibold text-white" style={{ color: 'white', fontWeight: 600 }}>Virtual Tours</div>
-              <div className="text-[10px] text-white/70" style={{ color: 'rgba(255,255,255,0.7)', fontSize: '10px' }}>See More. Be More.</div>
+            <div style={{ lineHeight: "1.2" }}>
+              <div style={{ color: "white", fontWeight: 600, fontSize: "16px" }}>Virtual Tours</div>
+              <div style={{ color: "rgba(255,255,255,0.7)", fontSize: "10px" }}>See More. Be More.</div>
             </div>
           </a>
-          <nav className="hidden items-center gap-8 text-sm text-white/90 md:flex" style={{ display: 'flex', gap: '30px', alignItems: 'center' }}>
+          <nav style={{ display: "flex", gap: "30px", alignItems: "center" }}>
             {["Home", "Services", "Benefits", "Process", "Contact"].map((l) => (
-              <a key={l} href={`#${l.toLowerCase().replace(/\s/g, "-")}`} style={{ color: 'rgba(255,255,255,0.9)', textDecoration: 'none', fontSize: '14px' }}>
+              <a key={l} href={`#${l.toLowerCase().replace(/\s/g, "-")}`} style={{ color: "rgba(255,255,255,0.9)", textDecoration: "none", fontSize: "14px" }}>
                 {l}
               </a>
             ))}
           </nav>
-          <a href="#contact" style={{ background: BLUE, color: 'white', textDecoration: 'none', padding: '10px 20px', borderRadius: '6px', fontSize: '14px', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            <Calendar className="h-4 w-4" style={{ width: '16px', height: '16px' }} />
+          <a href="#contact" style={{ background: BLUE, color: "white", textDecoration: "none", padding: "10px 20px", borderRadius: "6px", fontSize: "14px", fontWeight: 500, display: "inline-flex", alignItems: "center", gap: "8px" }}>
+            <Calendar style={{ width: "16px", height: "16px" }} />
             Book 360° Tour Now
           </a>
         </div>
       </header>
 
-      {/* HERO */}
-      <section id="home" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'relative', height: '760px', width: '100%' }}>
-          <img src={HERO_IMG} alt="Modern interior" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4))' }} />
+      {/* HERO SECTION - ZERO MARGIN & ZERO PADDING ON SIDES */}
+      <section id="home" style={{ position: "relative", width: "100%", height: "85vh", minHeight: "580px", display: "flex", alignItems: "center", overflow: "hidden", margin: 0, padding: 0 }}>
+        {/* Fullscreen Background Image */}
+        <img src={HERO_IMG} alt="Modern interior" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 1 }} />
+        {/* Dark Blend Gradient Layer */}
+        <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.45))", zIndex: 2 }} />
 
-          <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '40px', alignItems: 'center', maxWidth: '1200px', margin: '0 auto', padding: '150px 20px 0', height: '100%' }}>
-            {/* Left Column */}
-            <div style={{ color: 'white' }}>
-              <div style={{ background: 'white', color: '#334155', padding: '6px 14px', borderRadius: '20px', width: 'fit-content', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', fontWeight: 500 }}>
-                <GoogleG style={{ width: '16px', height: '16px' }} />
+        {/* Content Container - Margins and Paddings Zeroed Out on Left and Right */}
+        <div style={{ position: "relative", zIndex: 3, width: "100%", padding: "70px 0px 40px", boxSizing: "border-box", margin: 0 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center", width: "100%" }}>
+            
+            {/* Left Column Content */}
+            <div style={{ color: "white", width: "100%", paddingLeft: "20px", boxSizing: "border-box" }}>
+              <div style={{ background: "white", color: "#334155", padding: "6px 14px", borderRadius: "20px", width: "fit-content", display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", fontWeight: 500 }}>
+                <GoogleG style={{ width: "16px", height: "16px" }} />
                 Google Trusted Photographer
               </div>
-              <h1 style={{ fontSize: '3.5rem', fontWeight: 'bold', lineHeight: 1.1, margin: '24px 0 20px' }}>
+              <h1 style={{ fontSize: "3.2rem", fontWeight: "bold", lineHeight: 1.1, margin: "16px 0 16px" }}>
                 Immersive 360° <br /> Virtual Tours
               </h1>
-              <p style={{ opacity: 0.85, fontSize: '16px', maxWidth: '450px', lineHeight: 1.6, margin: '0 0 30px' }}>
+              <p style={{ opacity: 0.85, fontSize: "16px", width: "100%", maxWidth: "550px", lineHeight: 1.5, margin: "0 0 24px" }}>
                 Showcase your business. Engage more customers. Stand out on Google Maps and Search listings effortlessly.
               </p>
-
-              <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-                <a href="#contact" style={{ background: BLUE, color: 'white', padding: '14px 28px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600, fontSize: '14px' }}>
+              <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+                <a href="#contact" style={{ background: BLUE, color: "white", padding: "14px 28px", borderRadius: "6px", textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>
                   Book 360° Photography Now
                 </a>
               </div>
             </div>
 
-            {/* Right Column (Viewer Card Preview) */}
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <div style={{ background: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '12px', overflow: 'hidden', width: '100%', maxWidth: '440px' }}>
-                <div style={{ position: 'relative', aspectRatio: '4/3', height: '280px' }}>
-                  <img src={TOUR_PREVIEW_IMG} alt="Modern Café tour" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-                    <div style={{ width: '80px', height: '80px', borderRadius: '50%', border: '2px solid white', display: 'grid', placeItems: 'center', color: 'white', background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)' }}>
-                      <div style={{ fontSize: '20px', fontWeight: 'bold' }}>360°</div>
+            {/* Right Column Content Card */}
+            <div style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+              <div style={{ background: "rgba(255, 255, 255, 0.1)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "12px 0px 0px 12px", overflow: "hidden", width: "100%", maxWidth: "460px" }}>
+                <div style={{ position: "relative", width: "100%", aspectRatio: "4/3" }}>
+                  <img src={TOUR_PREVIEW_IMG} alt="Modern Café tour" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+                    <div style={{ width: "70px", height: "70px", borderRadius: "50%", border: "2px solid white", display: "grid", placeItems: "center", color: "white", background: "rgba(0,0,0,0.4)", backdropFilter: "blur(4px)" }}>
+                      <div style={{ fontSize: "18px", fontWeight: "bold" }}>360°</div>
                     </div>
                   </div>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px', padding: '10px' }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "6px", padding: "8px" }}>
                   {THUMBS.map((src, i) => (
-                    <div key={i} style={{ borderRadius: '4px', overflow: 'hidden', height: '55px' }}>
-                      <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <div key={i} style={{ borderRadius: "4px", overflow: "hidden", height: "55px" }}>
+                      <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                     </div>
                   ))}
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
       {/* SERVICES */}
-      <section id="services" style={{ padding: '100px 20px', maxWidth: '1200px', margin: '0 auto', background: '#ffffff' }}>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ color: BLUE, fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', fontSize: '12px' }}>Our Services</div>
-          <h2 style={{ fontSize: '2.5rem', fontWeight: 700, margin: '10px 0 20px', color: '#0f172a' }}>360° Solutions for Every Business</h2>
-          <p style={{ color: '#64748b', maxWidth: '600px', margin: '0 auto 60px' }}>We help businesses create stunning interactive experiences that boost local web engagement and presence.</p>
+      <section id="services" style={{ padding: "100px 0px", background: "#ffffff", width: "100%", boxSizing: "border-box" }}>
+        <div style={{ textAlign: "center", width: "100%" }}>
+          <div style={{ color: BLUE, fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", fontSize: "12px" }}>Our Services</div>
+          <h2 style={{ fontSize: "2.5rem", fontWeight: 700, margin: "10px 0 20px", color: "#0f172a" }}>360° Solutions for Every Business</h2>
+          <p style={{ color: "#64748b", maxWidth: "600px", margin: "0 auto 60px" }}>We help businesses create stunning interactive experiences that boost local web engagement and presence.</p>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px' }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "24px", width: "100%" }}>
             {SERVICES.map((s, index) => (
-              <div key={index} style={{ padding: '30px', border: '1px solid #e2e8f0', borderRadius: '16px', textAlign: 'left', background: '#ffffff', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
-                <div style={{ background: `${s.color}1A`, color: s.color, width: '48px', height: '48px', borderRadius: '12px', display: 'grid', placeItems: 'center' }}>
-                  <s.icon style={{ width: '24px', height: '24px' }} />
+              <div key={index} style={{ padding: "30px", border: "1px solid #e2e8f0", borderRadius: "16px", textAlign: "left", background: "#ffffff", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>
+                <div style={{ background: `${s.color}1A`, color: s.color, width: "48px", height: "48px", borderRadius: "12px", display: "grid", placeItems: "center" }}>
+                  <s.icon style={{ width: "24px", height: "24px" }} />
                 </div>
-                <h3 style={{ fontSize: '18px', fontWeight: 600, margin: '20px 0 10px', color: '#1e293b' }}>{s.title}</h3>
-                <p style={{ color: '#64748b', fontSize: '14px', lineHeight: 1.6, margin: 0 }}>{s.desc}</p>
+                <h3 style={{ fontSize: "18px", fontWeight: 600, margin: "20px 0 10px", color: "#1e293b" }}>{s.title}</h3>
+                <p style={{ color: "#64748b", fontSize: "14px", lineHeight: 1.6, margin: 0 }}>{s.desc}</p>
               </div>
             ))}
           </div>
@@ -159,18 +162,18 @@ export default function App() {
       </section>
 
       {/* WHY 360 */}
-      <section id="benefits" style={{ padding: '80px 20px', background: '#f8fafc' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '60px', alignItems: 'center' }}>
-          <div style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }}>
-            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80" alt="Interior preview" style={{ width: '100%', height: 'auto', display: 'block' }} />
+      <section id="benefits" style={{ padding: "80px 0px", background: "#f8fafc", width: "100%", boxSizing: "border-box" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center", width: "100%" }}>
+          <div style={{ borderRadius: "16px", overflow: "hidden", boxShadow: "0 10px 15px -3px rgba(0,0,0,0.1)", width: "100%" }}>
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80" alt="Interior preview" style={{ width: "100%", height: "auto", display: "block" }} />
           </div>
-          <div>
-            <div style={{ color: BLUE, fontWeight: 600, textTransform: 'uppercase', fontSize: '12px', letterSpacing: '1px' }}>Why 360° Tours?</div>
-            <h2 style={{ fontSize: '2.5rem', fontWeight: 700, margin: '10px 0 20px', color: '#1e293b' }}>Turn Digital Views into Real Foot Traffic</h2>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+          <div style={{ width: "100%" }}>
+            <div style={{ color: BLUE, fontWeight: 600, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1px" }}>Why 360° Tours?</div>
+            <h2 style={{ fontSize: "2.5rem", fontWeight: 700, margin: "10px 0 20px", color: "#1e293b" }}>Turn Digital Views into Real Foot Traffic</h2>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {CHECKLIST.map((c, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px', margin: '16px 0', color: '#334155', fontSize: '16px' }}>
-                  <CheckCircle2 style={{ color: BLUE, width: '22px', height: '22px', flexShrink: 0 }} />
+                <li key={i} style={{ display: "flex", alignItems: "center", gap: "12px", margin: "16px 0", color: "#334155", fontSize: "16px" }}>
+                  <CheckCircle2 style={{ color: BLUE, width: "22px", height: "22px", flexShrink: 0 }} />
                   {c}
                 </li>
               ))}
@@ -180,45 +183,45 @@ export default function App() {
       </section>
 
       {/* PROCESS */}
-      <section id="process" style={{ padding: '100px 20px', maxWidth: '1200px', margin: '0 auto', textAlign: 'center', background: '#ffffff' }}>
-        <div style={{ color: BLUE, fontWeight: 600, textTransform: 'uppercase', fontSize: '12px', letterSpacing: '1px' }}>Our Process</div>
-        <h2 style={{ fontSize: '2.5rem', fontWeight: 700, margin: '10px 0 60px', color: '#1e293b' }}>Simple. Smooth. Professional.</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '30px' }}>
+      <section id="process" style={{ padding: "100px 0px", textAlign: "center", background: "#ffffff", width: "100%", boxSizing: "border-box" }}>
+        <div style={{ color: BLUE, fontWeight: 600, textTransform: "uppercase", fontSize: "12px", letterSpacing: "1px" }}>Our Process</div>
+        <h2 style={{ fontSize: "2.5rem", fontWeight: 700, margin: "10px 0 60px", color: "#1e293b" }}>Simple. Smooth. Professional.</h2>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "30px", width: "100%" }}>
           {PROCESS.map((p, i) => (
-            <div key={i} style={{ textAlign: 'center' }}>
-              <div style={{ width: '64px', height: '64px', borderRadius: '50%', border: `2px solid ${BLUE}`, color: BLUE, display: 'grid', placeItems: 'center', margin: '0 auto 20px' }}>
-                <p.icon style={{ width: '26px', height: '26px' }} />
+            <div key={i} style={{ textAlign: "center" }}>
+              <div style={{ width: "64px", height: "64px", borderRadius: "50%", border: `2px solid ${BLUE}`, color: BLUE, display: "grid", placeItems: "center", margin: "0 auto 20px" }}>
+                <p.icon style={{ width: "26px", height: "26px" }} />
               </div>
-              <h3 style={{ fontSize: '18px', fontWeight: 600, margin: '0 0 10px', color: '#1e293b' }}>{i + 1}. {p.title}</h3>
-              <p style={{ color: '#64748b', fontSize: '14px', lineHeight: 1.5, margin: 0 }}>{p.desc}</p>
+              <h3 style={{ fontSize: "18px", fontWeight: 600, margin: "0 0 10px", color: "#1e293b" }}>{i + 1}. {p.title}</h3>
+              <p style={{ color: "#64748b", fontSize: "14px", lineHeight: 1.5, margin: 0 }}>{p.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer style={{ background: "#0B1A33", color: "white", padding: '60px 20px', marginTop: '80px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '30px' }}>
-          <div style={{ textAlign: 'left' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ width: '32px', height: '32px', border: `2px solid ${BLUE}`, borderRadius: '50%', display: 'grid', placeItems: 'center', fontWeight: 'bold', fontSize: '12px' }}>360</span>
+      <footer style={{ background: "#0B1A33", color: "white", padding: "60px 0px", marginTop: "80px", width: "100%", boxSizing: "border-box" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "30px", width: "100%" }}>
+          <div style={{ textAlign: "left" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <span style={{ width: "32px", height: "32px", border: `2px solid ${BLUE}`, borderRadius: "50%", display: "grid", placeItems: "center", fontWeight: "bold", fontSize: "12px" }}>360</span>
               <span style={{ fontWeight: 600 }}>Virtual Tours</span>
             </div>
-            <p style={{ opacity: 0.6, fontSize: '13px', marginTop: '10px', maxWidth: '300px' }}>Helping local organizations capture spaces flawlessly.</p>
+            <p style={{ opacity: 0.6, fontSize: "13px", marginTop: "10px", maxWidth: "300px" }}>Helping local organizations capture spaces flawlessly.</p>
           </div>
-          
-          <div style={{ display: 'flex', gap: '12px' }}>
+          <div style={{ display: "flex", gap: "12px" }}>
             {[Share2, Play, GoogleG].map((Icon, i) => (
-              <a key={i} href="#" style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'grid', placeItems: 'center', color: 'white' }}>
-                <Icon style={{ width: '16px', height: '16px' }} />
+              <a key={i} href="#" style={{ width: "36px", height: "36px", borderRadius: "50%", background: "rgba(255,255,255,0.1)", display: "grid", placeItems: "center", color: "white" }}>
+                <Icon style={{ width: "16px", height: "16px" }} />
               </a>
             ))}
           </div>
         </div>
-        <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.95)', maxWidth: '1200px', margin: '40px auto 0', paddingTop: '20px', fontSize: '13px', opacity: 0.5, textAlign: 'center' }}>
+        <div style={{ borderTop: "1px solid rgba(255, 255, 255, 0.95)", margin: "40px auto 0", paddingTop: "20px", fontSize: "13px", opacity: 0.5, textAlign: "center", width: "100%" }}>
           © 2026 360 Virtual Tours. All rights reserved.
         </div>
       </footer>
+
     </main>
   );
 }
