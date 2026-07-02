@@ -129,26 +129,44 @@ export default function App() {
           <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center", width: "100%" }}>
             
             {/* Left Column */}
-           <div style={{ color: "white", width: "100%", boxSizing: "border-box", textAlign: "left" }}>
-  <div style={{ background: "white", color: "#334155", padding: "6px 14px", borderRadius: "20px", width: "fit-content", display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", fontWeight: 500 }}>
-    <GoogleG style={{ width: "16px", height: "16px" }} />
-    Google Trusted Photographer
-  </div>
-  
-  <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.2rem)", fontWeight: "bold", lineHeight: 1.1, margin: "12px 0" }}>
-    Immersive 360° <br /> Virtual Tours
-  </h1>
-  
-  <p style={{ opacity: 0.85, fontSize: "16px", maxWidth: "550px", lineHeight: 1.5, margin: "0 0 24px" }}>
-    Showcase your business. Engage more customers. Stand out on Google Maps and Search listings effortlessly.
-  </p>
-  
-  <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
-    <a href="#contact" style={{ background: BLUE, color: "white", padding: "14px 28px", borderRadius: "6px", textDecoration: "none", fontWeight: 600, fontSize: "14px", width: "fit-content", textAlign: "left" }}>
-      Book 360° Photography Now
-    </a>
-  
-</div>
+            <div style={{ color: "white", width: "100%", boxSizing: "border-box", textAlign: "left" }}>
+              <div style={{ background: "white", color: "#334155", padding: "6px 14px", borderRadius: "20px", width: "fit-content", display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", fontWeight: 500 }}>
+                <GoogleG style={{ width: "16px", height: "16px" }} />
+                Google Trusted Photographer
+              </div>
+              
+              <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.2rem)", fontWeight: "bold", lineHeight: 1.1, margin: "12px 0" }}>
+                Immersive 360° <br /> Virtual Tours
+              </h1>
+              
+              <p style={{ opacity: 0.85, fontSize: "16px", maxWidth: "550px", lineHeight: 1.5, margin: "0 0 24px" }}>
+                Showcase your business. Engage more customers. Stand out on Google Maps and Search listings effortlessly.
+              </p>
+
+              {/* Feature Points Missing - Added */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", margin: "0 0 30px 0", fontSize: "13px", opacity: 0.8 }}>
+                {[
+                  { icon: MapPin, text: "Google Street View Trusted" },
+                  { icon: LineChart, text: "Boost Visibility & Attract Customers" },
+                  { icon: Building2, text: "Immersive Experience Builds Trust" }
+                ].map((item, i) => (
+                  <div key={i} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                    <item.icon style={{ width: "16px", height: "16px", color: BLUE }}/>
+                    <span>{item.text}</span>
+                  </div>
+                ))}
+              </div>
+              
+              <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", alignItems: "center" }}>
+                <a href="#contact" style={{ background: BLUE, color: "white", padding: "14px 28px", borderRadius: "6px", textDecoration: "none", fontWeight: 600, fontSize: "14px", width: "fit-content", textAlign: "left", display: "flex", alignItems: "center", gap: "10px" }}>
+                  <Calendar style={{width: "18px", height: "18px"}}/>
+                  Book 360° Tour Photography Now
+                </a>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "14px", opacity: 0.85, cursor: "pointer" }}>
+                  <Play style={{ width: "22px", height: "22px", fill: "rgba(255,255,255,0.15)", color: "white" }}/>
+                  See How It Works (1:00)
+                </div>
+              </div>
             </div>
 
             {/* Right Column Card */}
@@ -156,6 +174,20 @@ export default function App() {
               <div className="hero-right-card" style={{ background: "rgba(255, 255, 255, 0.1)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "12px 0px 0px 12px", overflow: "hidden", width: "100%", maxWidth: "460px" }}>
                 <div style={{ position: "relative", width: "100%", aspectRatio: "4/3" }}>
                   <img src={TOUR_PREVIEW_IMG} alt="Modern Café tour" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  {/* Tour Metadata (Top left like asset) */}
+                  <div style={{ position: "absolute", top: "15px", left: "15px", display: "flex", flexDirection: "column", gap: "2px", color: "white", textShadow: "0 1px 2px rgba(0,0,0,0.5)" }}>
+                    <div style={{fontSize: "14px", fontWeight: 600}}>Modern Café</div>
+                    <div style={{fontSize: "11px", display: "flex", alignItems: "center", gap: "4px"}}>
+                      <MapPin style={{width: "12px", height: "12px"}}/>
+                      View on Google
+                    </div>
+                  </div>
+                  {/* Top Right Icons (Asset matched) */}
+                  <div style={{position: "absolute", top: "15px", right: "15px", display: "flex", gap: "12px", color: "white"}}>
+                    <Share2 style={{width: "18px", height: "18px"}}/>
+                    <MapPin style={{width: "18px", height: "18px"}}/>
+                  </div>
+                  {/* Central 360 Indicator */}
                   <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
                     <div style={{ width: "70px", height: "70px", borderRadius: "50%", border: "2px solid white", display: "grid", placeItems: "center", color: "white", background: "rgba(0,0,0,0.4)", backdropFilter: "blur(4px)" }}>
                       <div style={{ fontSize: "18px", fontWeight: "bold" }}>360°</div>
