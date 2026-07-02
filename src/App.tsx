@@ -129,22 +129,26 @@ export default function App() {
           <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center", width: "100%" }}>
             
             {/* Left Column */}
-            <div style={{ color: "white", width: "100%", boxSizing: "border-box" }}>
-              <div style={{ background: "white", color: "#334155", padding: "6px 14px", borderRadius: "20px", width: "fit-content", display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", fontWeight: 500 }}>
-                <GoogleG style={{ width: "16px", height: "16px" }} />
-                Google Trusted Photographer
-              </div>
-              <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.2rem)", fontWeight: "bold", lineHeight: 1.1, margin: "16px 0" }}>
-                Immersive 360° <br /> Virtual Tours
-              </h1>
-              <p style={{ opacity: 0.85, fontSize: "16px", maxWidth: "550px", lineHeight: 1.5, margin: "0 0 24px" }}>
-                Showcase your business. Engage more customers. Stand out on Google Maps and Search listings effortlessly.
-              </p>
-              <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
-                <a href="#contact" style={{ background: BLUE, color: "white", padding: "14px 28px", borderRadius: "6px", textDecoration: "none", fontWeight: 600, fontSize: "14px", width: "100%", textAlign: "center" }}>
-                  Book 360° Photography Now
-                </a>
-              </div>
+           <div style={{ color: "white", width: "100%", boxSizing: "border-box", textAlign: "left" }}>
+  <div style={{ background: "white", color: "#334155", padding: "6px 14px", borderRadius: "20px", width: "fit-content", display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", fontWeight: 500 }}>
+    <GoogleG style={{ width: "16px", height: "16px" }} />
+    Google Trusted Photographer
+  </div>
+  
+  <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.2rem)", fontWeight: "bold", lineHeight: 1.1, margin: "12px 0" }}>
+    Immersive 360° <br /> Virtual Tours
+  </h1>
+  
+  <p style={{ opacity: 0.85, fontSize: "16px", maxWidth: "550px", lineHeight: 1.5, margin: "0 0 24px" }}>
+    Showcase your business. Engage more customers. Stand out on Google Maps and Search listings effortlessly.
+  </p>
+  
+  <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+    <a href="#contact" style={{ background: BLUE, color: "white", padding: "14px 28px", borderRadius: "6px", textDecoration: "none", fontWeight: 600, fontSize: "14px", width: "fit-content", textAlign: "left" }}>
+      Book 360° Photography Now
+    </a>
+  
+</div>
             </div>
 
             {/* Right Column Card */}
