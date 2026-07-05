@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useForm, ValidationError } from "@formspree/react"; // 1. Imported Formspree tools
 import {
   Building2,
   Calendar,
@@ -8,7 +9,6 @@ import {
   LineChart,
   MapPin,
   Monitor,
-  Play,
   Share2,
   TrendingUp,
   Menu,
@@ -52,6 +52,21 @@ const PROCESS = [
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [formOpen, setFormOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: "", phone: "", email: "", date: "" });
+
+  // 2. Initialized Formspree hook using your exact form ID
+  const [state, handleFormspreeSubmit] = useForm("xzdlorbv");
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // 3. Updated modal closure behavior to also reset Formspree state fields when closed
+  const closeFormModal = () => {
+    setFormOpen(false);
+    setFormData({ name: "", phone: "", email: "", date: "" });
+  };
 
   return (
     <main style={{ fontFamily: "sans-serif", margin: 0, padding: 0, boxSizing: "border-box", width: "100%", minHeight: "100vh", overflowX: "hidden", background: "#ffffff" }}>
@@ -82,17 +97,17 @@ export default function App() {
 
           {/* Desktop Nav Actions */}
           <nav className="desktop-nav" style={{ display: "flex", gap: "30px", alignItems: "center" }}>
-            {["Home", "Services", "Benefits", "Process", "Contact"].map((l) => (
+            {["Home", "Services", "Benefits", "Process"].map((l) => (
               <a key={l} href={`#${l.toLowerCase().replace(/\s/g, "-")}`} style={{ color: "rgba(255,255,255,0.9)", textDecoration: "none", fontSize: "14px" }}>
                 {l}
               </a>
             ))}
           </nav>
           <div className="desktop-nav">
-            <a href="#contact" style={{ background: BLUE, color: "white", textDecoration: "none", padding: "10px 20px", borderRadius: "6px", fontSize: "14px", fontWeight: 500, display: "inline-flex", alignItems: "center", gap: "8px" }}>
+            <button onClick={() => setFormOpen(true)} style={{ background: BLUE, color: "white", border: "none", cursor: "pointer", padding: "10px 20px", borderRadius: "6px", fontSize: "14px", fontWeight: 500, display: "inline-flex", alignItems: "center", gap: "8px" }}>
               <Calendar style={{ width: "16px", height: "16px" }} />
               Book 360° Tour Now
-            </a>
+            </button>
           </div>
 
           {/* Mobile Menu Toggle Button */}
@@ -108,14 +123,14 @@ export default function App() {
         {/* Mobile Dropdown Menu Drawer */}
         {menuOpen && (
           <div style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", background: "#0B1A33", zIndex: 45, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "24px" }}>
-            {["Home", "Services", "Benefits", "Process", "Contact"].map((l) => (
+            {["Home", "Services", "Benefits", "Process"].map((l) => (
               <a key={l} onClick={() => setMenuOpen(false)} href={`#${l.toLowerCase().replace(/\s/g, "-")}`} style={{ color: "white", textDecoration: "none", fontSize: "20px", fontWeight: 500 }}>
                 {l}
               </a>
             ))}
-            <a href="#contact" onClick={() => setMenuOpen(false)} style={{ background: BLUE, color: "white", textDecoration: "none", padding: "14px 28px", borderRadius: "6px", fontSize: "16px", fontWeight: 500, marginTop: "10px" }}>
+            <button onClick={() => { setMenuOpen(false); setFormOpen(true); }} style={{ background: BLUE, color: "white", border: "none", cursor: "pointer", padding: "14px 28px", borderRadius: "6px", fontSize: "16px", fontWeight: 500, marginTop: "10px" }}>
               Book 360° Tour Now
-            </a>
+            </button>
           </div>
         )}
       </header>
@@ -143,7 +158,6 @@ export default function App() {
                 Showcase your business. Engage more customers. Stand out on Google Maps and Search listings effortlessly.
               </p>
 
-              {/* Feature Points Missing - Added */}
               <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", margin: "0 0 30px 0", fontSize: "13px", opacity: 0.8 }}>
                 {[
                   { icon: MapPin, text: "Google Street View Trusted" },
@@ -157,15 +171,21 @@ export default function App() {
                 ))}
               </div>
               
-              <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", alignItems: "center" }}>
-                <a href="#contact" style={{ background: BLUE, color: "white", padding: "14px 28px", borderRadius: "6px", textDecoration: "none", fontWeight: 600, fontSize: "14px", width: "fit-content", textAlign: "left", display: "flex", alignItems: "center", gap: "10px" }}>
+              <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", alignItems: "center" }}>
+                <button onClick={() => setFormOpen(true)} style={{ background: BLUE, color: "white", border: "none", cursor: "pointer", padding: "14px 28px", borderRadius: "6px", fontWeight: 600, fontSize: "14px", width: "fit-content", textAlign: "left", display: "flex", alignItems: "center", gap: "10px" }}>
                   <Calendar style={{width: "18px", height: "18px"}}/>
                   Book 360° Tour Photography Now
+                </button>
+                
+                <a 
+                  href="https://wa.me/8788292359" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "14px", color: "#25D366", textDecoration: "none", fontWeight: 600, cursor: "pointer" }}
+                >
+                  <WhatsAppIcon style={{ width: "24px", height: "24px", fill: "#25D366" }} />
+                  Connect us on WhatsApp
                 </a>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "14px", opacity: 0.85, cursor: "pointer" }}>
-                  <Play style={{ width: "22px", height: "22px", fill: "rgba(255,255,255,0.15)", color: "white" }}/>
-                  See How It Works (1:00)
-                </div>
               </div>
             </div>
 
@@ -174,7 +194,6 @@ export default function App() {
               <div className="hero-right-card" style={{ background: "rgba(255, 255, 255, 0.1)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "12px 0px 0px 12px", overflow: "hidden", width: "100%", maxWidth: "460px" }}>
                 <div style={{ position: "relative", width: "100%", aspectRatio: "4/3" }}>
                   <img src={TOUR_PREVIEW_IMG} alt="Modern Café tour" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  {/* Tour Metadata (Top left like asset) */}
                   <div style={{ position: "absolute", top: "15px", left: "15px", display: "flex", flexDirection: "column", gap: "2px", color: "white", textShadow: "0 1px 2px rgba(0,0,0,0.5)" }}>
                     <div style={{fontSize: "14px", fontWeight: 600}}>Modern Café</div>
                     <div style={{fontSize: "11px", display: "flex", alignItems: "center", gap: "4px"}}>
@@ -182,12 +201,10 @@ export default function App() {
                       View on Google
                     </div>
                   </div>
-                  {/* Top Right Icons (Asset matched) */}
                   <div style={{position: "absolute", top: "15px", right: "15px", display: "flex", gap: "12px", color: "white"}}>
                     <Share2 style={{width: "18px", height: "18px"}}/>
                     <MapPin style={{width: "18px", height: "18px"}}/>
                   </div>
-                  {/* Central 360 Indicator */}
                   <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
                     <div style={{ width: "70px", height: "70px", borderRadius: "50%", border: "2px solid white", display: "grid", placeItems: "center", color: "white", background: "rgba(0,0,0,0.4)", backdropFilter: "blur(4px)" }}>
                       <div style={{ fontSize: "18px", fontWeight: "bold" }}>360°</div>
@@ -269,6 +286,65 @@ export default function App() {
         </div>
       </section>
 
+      {/* BOOKING MODAL FORM */}
+      {formOpen && (
+        <div style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", backgroundColor: "rgba(15, 23, 42, 0.6)", backdropFilter: "blur(4px)", zIndex: 100, display: "grid", placeItems: "center", padding: "20px", boxSizing: "border-box" }}>
+          <div style={{ background: "#ffffff", width: "100%", maxWidth: "450px", borderRadius: "16px", padding: "30px", boxSizing: "border-box", boxShadow: "0 20px 25px -5px rgba(0,0,0,0.15)", position: "relative" }}>
+            <button onClick={closeFormModal} style={{ position: "absolute", top: "20px", right: "20px", background: "none", border: "none", color: "#64748b", cursor: "pointer" }}>
+              <X size={24} />
+            </button>
+            
+            <h3 style={{ fontSize: "22px", fontWeight: 700, margin: "0 0 8px 0", color: "#0f172a" }}>Book Your 360° Tour</h3>
+            <p style={{ color: "#64748b", fontSize: "14px", margin: "0 0 24px 0" }}>Fill out details below and our team will connect with you.</p>
+            
+            {/* 4. Form implementation modified with Formspree submit handler */}
+            {state.succeeded ? (
+              <div style={{ textAlign: "center", padding: "20px 0" }}>
+                <CheckCircle2 size={48} style={{ color: BLUE, marginBottom: "16px" }} />
+                <h4 style={{ fontSize: "18px", fontWeight: 600, color: "#0f172a", margin: "0 0 8px 0" }}>Booking Request Sent!</h4>
+                <p style={{ color: "#64748b", fontSize: "14px", margin: "0 0 20px 0" }}>
+                  Thank you, {formData.name || "there"}! Your request has been securely processed.
+                </p>
+                <button onClick={closeFormModal} style={{ background: BLUE, color: "white", border: "none", padding: "10px 20px", borderRadius: "6px", cursor: "pointer", fontWeight: 600 }}>
+                  Close Window
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleFormspreeSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                  <label style={{ fontSize: "13px", fontWeight: 600, color: "#334155" }}>Full Name</label>
+                  <input required type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="John Doe" style={{ width: "100%", padding: "10px 14px", borderRadius: "6px", border: "1px solid #cbd5e1", fontSize: "14px", boxSizing: "border-box" }} />
+                  <ValidationError prefix="Name" field="name" errors={state.errors} style={{ color: "red", fontSize: "12px" }} />
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                  <label style={{ fontSize: "13px", fontWeight: 600, color: "#334155" }}>Phone Number</label>
+                  <input required type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="+1 (555) 000-0000" style={{ width: "100%", padding: "10px 14px", borderRadius: "6px", border: "1px solid #cbd5e1", fontSize: "14px", boxSizing: "border-box" }} />
+                  <ValidationError prefix="Phone" field="phone" errors={state.errors} style={{ color: "red", fontSize: "12px" }} />
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                  <label style={{ fontSize: "13px", fontWeight: 600, color: "#334155" }}>Email Address</label>
+                  <input required type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="john@example.com" style={{ width: "100%", padding: "10px 14px", borderRadius: "6px", border: "1px solid #cbd5e1", fontSize: "14px", boxSizing: "border-box" }} />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} style={{ color: "red", fontSize: "12px" }} />
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                  <label style={{ fontSize: "13px", fontWeight: 600, color: "#334155" }}>Preferred Shoot Date</label>
+                  <input required type="date" name="date" value={formData.date} onChange={handleInputChange} style={{ width: "100%", padding: "10px 14px", borderRadius: "6px", border: "1px solid #cbd5e1", fontSize: "14px", boxSizing: "border-box" }} />
+                  <ValidationError prefix="Date" field="date" errors={state.errors} style={{ color: "red", fontSize: "12px" }} />
+                </div>
+
+                {/* 5. Submitting state disables the button dynamically */}
+                <button type="submit" disabled={state.submitting} style={{ background: BLUE, color: "white", border: "none", padding: "12px", borderRadius: "6px", fontSize: "15px", fontWeight: 600, cursor: state.submitting ? "not-allowed" : "pointer", opacity: state.submitting ? 0.7 : 1, marginTop: "10px", transition: "background 0.2s" }}>
+                  {state.submitting ? "Sending Request..." : "Confirm Booking Request"}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* FOOTER */}
       <footer style={{ background: "#0B1A33", color: "white", padding: "60px 20px", width: "100%", boxSizing: "border-box" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "30px", width: "100%" }}>
@@ -280,7 +356,7 @@ export default function App() {
             <p style={{ opacity: 0.6, fontSize: "13px", marginTop: "10px", maxWidth: "300px" }}>Helping local organizations capture spaces flawlessly.</p>
           </div>
           <div style={{ display: "flex", gap: "12px" }}>
-            {[Share2, Play, GoogleG].map((Icon, i) => (
+            {[Share2, GoogleG].map((Icon, i) => (
               <a key={i} href="#" style={{ width: "36px", height: "36px", borderRadius: "50%", background: "rgba(255,255,255,0.1)", display: "grid", placeItems: "center", color: "white" }}>
                 <Icon style={{ width: "16px", height: "16px" }} />
               </a>
@@ -293,6 +369,15 @@ export default function App() {
       </footer>
 
     </main>
+  );
+}
+
+// Custom SVG Component for WhatsApp
+function WhatsAppIcon({ className, style }: { className?: string; style?: React.CSSProperties }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} style={style} aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.455 5.703 1.456h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
   );
 }
 
