@@ -17,8 +17,9 @@ import {
 
 const BLUE = "#1A73E8";
 
-const HERO_IMG = "https://images.unsplash.com/photo-1559329007-40df8a9345d8?auto=format&fit=crop&w=2000&q=80";
-const TOUR_PREVIEW_IMG = "https://images.unsplash.com/photo-1559329007-40df8a9345d8?auto=format&fit=crop&w=1200&q=80";
+// Updated high-quality 360° tour preview images
+const HERO_IMG = "/heroth.jpeg";
+const TOUR_PREVIEW_IMG = "/herotw.jpeg";
 
 const THUMBS: string[] = [
   "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=300&q=70",
